@@ -1,5 +1,5 @@
 # penguin_case
-3D printed, parametric, waterproof latching box
+3D printed, parametric, ~waterproof~ latching box
 
 ## Awesome Features
 
@@ -18,3 +18,5 @@
 ![Slicer Screenshot](images/2021-05-04_22-20.png)
 
 ![Finished box](images/IMG_20210504_215351.jpg)
+
+Inspired by the excellent [Frog Box v2.0 by Nibb13](https://www.thingiverse.com/thing:4094861).
