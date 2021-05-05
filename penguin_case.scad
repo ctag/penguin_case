@@ -7,10 +7,10 @@ $fs = 0.5; // Min face size. Default 2.
 
 // User customizable variables
 // Box dimensions dictate the internal volume.
-box_height = 35;
+box_height = 50;
 box_width = 40;
 box_depth = 40;
-seal_height = 20;
+seal_height = 35;
 
 // Static variables
 rounding_radius = 5;
@@ -21,6 +21,8 @@ seal_outset = rib_outset;
 seal_thickness = 10;
 latch_outset = 10;
 wall_thickness = 2;
+latch_height = 25.4; // 1 inch matches existing clasp designs
+latch_width = (25.4/2); // inner width, matches existing designs
 
 
 // Validate variables
@@ -91,18 +93,18 @@ module box_latches() {
 	h = box_height + (wall_thickness*2);
 	union() {
 		box_ribs();
-		for (i = [0:1]) {
-			translate([(20*i)-10, 0, h/2]) {
+		for (i = [-1:2:1]) {
+			translate([((latch_width/2)+(rib_width+0.5))*i, 0, h/2]) { // mirror left/right
 				difference() {
 					hull() {
 						cube([rib_width*2, box_depth + latch_outset, h], center=true);
 						cube([rib_width, box_depth + (latch_outset*2), h-latch_outset], center=true);
 					}
 					for (r = [0:1]) {
-						rotate([0, 0, 180*r])
-							translate([0, ((box_depth+(latch_outset*2))/2)-((3/2)+2), seal_height-(box_height/2)])
+						rotate([0, 0, 180*r]) // mirror front/back of case
+							translate([0, ((box_depth+(latch_outset*2))/2)-((3/2)+2), seal_height-(h/2)])
 								for (y = [-1:2:1]) {
-									translate([0, 0, 10*y])
+									translate([0, 0, (latch_height/2)*y]) // mirror bottom/top
 										rotate([0, 90, 0])
 											cylinder(h=rib_width*3, d=3, center=true);
 								}
@@ -150,8 +152,8 @@ module box_top() {
 //box_ribs();
 //box_latches();
 //box_cavity();
-box_bottom();
-//box_top();
+//box_bottom();
+box_top();
 
 
 
