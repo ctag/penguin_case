@@ -110,6 +110,11 @@ module box_latches() {
 											cylinder(h=rib_width*3, d=3, center=true);
 								}
 					}
+					for (d = [-1:2:1]) { // Latch hinge cutouts
+						translate([0, ((box_depth+latch_outset*2)/2)*d, seal_height])
+							rotate([45, 0, 0])
+								cube([rib_width*4, rib_width, rib_width], center=true);
+					}
 				}
 			}
 		}
