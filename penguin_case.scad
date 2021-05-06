@@ -94,15 +94,16 @@ module box_latches() {
 	union() {
 		box_ribs();
 		for (i = [-1:2:1]) {
-			translate([((latch_width/2)+(rib_width+0.5))*i, 0, h/2]) { // mirror left/right
+			translate([((latch_width/2)+(rib_width+0.5))*i, 0, 0]) { // mirror left/right
 				difference() {
-					hull() {
-						cube([rib_width*2, box_depth + latch_outset, h], center=true);
-						cube([rib_width, box_depth + (latch_outset*2), h-latch_outset], center=true);
-					}
-					for (r = [0:1]) {
+					translate([0 ,0, h/2])
+						hull() { // Latch rib
+							cube([rib_width*2, box_depth + latch_outset, h], center=true);
+							cube([rib_width, box_depth + (latch_outset*2), h-latch_outset], center=true);
+						}
+					for (r = [0:1]) { // Latch mounting holes
 						rotate([0, 0, 180*r]) // mirror front/back of case
-							translate([0, ((box_depth+(latch_outset*2))/2)-((3/2)+2), seal_height-(h/2)])
+							translate([0, ((box_depth+(latch_outset*2))/2)-((3/2)+2), seal_height])
 								for (y = [-1:2:1]) {
 									translate([0, 0, (latch_height/2)*y]) // mirror bottom/top
 										rotate([0, 90, 0])
