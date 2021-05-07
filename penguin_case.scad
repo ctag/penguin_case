@@ -1,6 +1,9 @@
 // Penguin Case - customizable "rugged" box
 // Christopher Bero <bigbero@gmail.com>
 
+// Only for Thingiverse Customizer
+use <utils/build_plate.scad>
+
 /* [Basic] */
 
 part = "both"; // [top:Top Half, bottom: Bottom Half, both: Top and Bottom arranged]
@@ -52,6 +55,18 @@ assert(seal_height > 0);
 ext_w = box_width + (wall*2);
 ext_d = box_depth + (wall*2);
 ext_h = box_height + (wall*2);
+
+// Render Thingiverse Customizer build plate
+//for display only, doesn't contribute to final object
+build_plate_selector = 3; //[0:Replicator 2,1: Replicator,2:Thingomatic,3:Manual]
+
+//when Build Plate Selector is set to "manual" this controls the build plate x dimension
+build_plate_manual_x = 200; //[100:400]
+
+//when Build Plate Selector is set to "manual" this controls the build plate y dimension
+build_plate_manual_y = 180; //[100:400]
+
+build_plate(build_plate_selector,build_plate_manual_x,build_plate_manual_y);
 
 // Creates rounded cube for rough shape of case.
 module box_core() {
