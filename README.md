@@ -4,14 +4,23 @@
 ## Awesome Features
 
 * Holds things
-* Has any number of clasps or hinges as long as it's an integer between 0 and 2 noninclusive
-* Compatible with hinges and clasps from: https://www.thingiverse.com/thing:4094861
+* Selectable 1 or 2 clasps
+  * Compatible with hinges and clasps from: https://www.thingiverse.com/thing:4094861
+* Did I mention it can hold things?
 
 ## Eventual Features
 
-* More customizable (2 hinges on left and right side of box!)
 * Penguin clasp design (ones that aren't 3rd party)
 * Weather/water proofing seals
+
+## Make One!
+
+* Required Materials:
+  * 20mm long M3 Bolts. 2x per hinge or clasp. I use [these from BoltDepot](https://www.boltdepot.com/Product-Details.aspx?product=6383)
+* Print hinges and clasps from the [Frog Box](https://www.thingiverse.com/thing:4094861)
+* Customize your box in [OpenSCAD](https://openscad.org/)
+* Or use [Thingiverse's Customizer](https://www.thingiverse.com/thing:4852352)
+* Print it!
 
 ## Prototype
 
