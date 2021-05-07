@@ -207,7 +207,7 @@ module box_top_oring() {
 			}
 			minkowski() {
 				cylinder_h = 2;
-				cube([box_width-(inner_radius*2), box_depth-(inner_radius*2), (seal_thickness/4) - cylinder_h], center=true);
+				cube([box_width-(inner_radius*2), box_depth-(inner_radius*2), (seal_thickness/4) - cylinder_h + 0.1], center=true);
 				cylinder(cylinder_h, r=(inner_radius+1.25), center=true);
 			}
 		}
