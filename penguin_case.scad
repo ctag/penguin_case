@@ -1,26 +1,44 @@
 // Penguin Case - customizable "rugged" box
 // Christopher Bero <bigbero@gmail.com>
 
-// OpenSCAD settings
-$fa = 6; // Min angle. Default 12.
-$fs = 0.5; // Min face size. Default 2.
+/* [Basic] */
 
-// User customizable variables
 // Box dimensions dictate the internal volume.
+
+// Box's cavity height (z)
 box_height = 50;
+// Box's cavity width (x)
 box_width = 100;
+// Box's cavity depth (y)
 box_depth = 40;
+// Height (z) of seam between bottom and top halves
 seal_height = 35;
-latch_num = 2; // 1 or 2 latches
+// Number of latches
+latch_num = 2; // [1, 2]
 
-// Static variables
+/* [Advanced] */
+
+//
+// OpenSCAD settings
+//
+
+// Min angle. OpenSCAD default is 12.
+$fa = 6;
+// Min face size. OpenSCAD default is 2.
+$fs = 0.5;
+
+// Inside radius of box edges
 inner_radius = 5;
+// Height (z) of seal
 seal_thickness = 10;
+// Distance latch protrudes from exterior of box
 latch_outset = 10;
-wall = 2; // Wall thickness
-latch_height = 25.4; // 1 inch matches existing clasp designs
-latch_width = (25.4/2); // inner width, matches existing designs
-
+// Wall thickness
+wall = 2;
+// Distance between latch mounting holes. 1 inch matches existing clasp designs.
+latch_height = 25.4;
+// Inner latch width, matches existing designs.
+latch_width = 12.7;
 
 // Validate variables
 assert(box_height > 0);
