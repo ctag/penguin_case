@@ -3,6 +3,8 @@
 
 /* [Basic] */
 
+part = "both"; // [top:Top Half, bottom: Bottom Half, both: Top and Bottom arranged]
+
 // Box dimensions dictate the internal volume.
 
 // Box's cavity height (z)
@@ -214,15 +216,29 @@ module box_top_oring() {
 	}
 }
 
+module box_top_printable() {
+		rotate([180, 0, 0]) {
+			translate([0, 0, -ext_h])
+				box_top_oring();
+		}
+}
 
 module box_arrangement() {
 	translate([-((box_width/2)+10), 0, 0])
 		box_bottom_oring();
-	translate([(box_width/2)+10, 0, 0]) {
-		rotate([180, 0, 0]) {
-				translate([0, 0, -ext_h])
-					box_top_oring();
-		}
+	translate([(box_width/2)+10, 0, 0])
+		box_top_printable();
+}
+
+module box_customizer() {
+	if (part == "top") {
+		box_top_printable();
+	}
+	if (part == "bottom") {
+		box_bottom_oring();
+	}
+	if (part == "both") {
+		box_arrangement();
 	}
 }
 
@@ -235,7 +251,8 @@ module box_arrangement() {
 //box_top();
 //box_bottom_oring();
 //box_top_oring();
-box_arrangement();
+//box_arrangement();
+box_customizer();
 
 
 
