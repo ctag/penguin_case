@@ -8,16 +8,14 @@ use <utils/build_plate.scad>
 
 part = "both"; // [top:Top Half, bottom: Bottom Half, both: Top and Bottom arranged]
 
-// Box dimensions dictate the internal volume.
-
-// Box's cavity height (z)
-box_height = 50;
-// Box's cavity width (x)
-box_width = 100;
-// Box's cavity depth (y)
-box_depth = 40;
+// Box's internal height (z)
+box_height = 50; // [200]
+// Box's internal width (x)
+box_width = 100; // [200]
+// Box's internal depth (y)
+box_depth = 60; // [200]
 // Height (z) of seam between bottom and top halves
-seal_height = 35;
+seal_height = 35; // [200]
 // Number of latches
 latch_num = 2; // [1, 2]
 // Style of seal surface
