@@ -1,5 +1,5 @@
 # penguin_case
-3D printed, parametric, ~waterproof~ latching box
+A 3D printed, parametric, ~waterproof~ latching box
 
 <img src="https://raw.githubusercontent.com/ctag/penguin_case/main/images/penguin_case_logo.png" height="200px" />
 
