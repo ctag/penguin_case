@@ -1,7 +1,7 @@
 // Penguin Case - customizable "rugged" box
 // Christopher Bero <bigbero@gmail.com>
 
-// Only for Thingiverse Customizer
+// Used to show a fake "printbed"
 use <utils/build_plate.scad>
 
 /* [Basic] */
