@@ -5,12 +5,13 @@
 
 * Holds things
 * Selectable 1 or 2 clasps
-  * Compatible with hinges and clasps from: https://www.thingiverse.com/thing:4094861
+  * Compatible with hinges and clasps from: [Frog Box](https://www.thingiverse.com/thing:4094861)
+* My mom thinks it looks cool
 * Did I mention it can hold things?
 
 ## Eventual Features
 
-* Penguin clasp design (ones that aren't 3rd party)
+* Native Penguin clasp design (ones that aren't 3rd party)
 * Weather/water proofing seals
 
 ## Make One!
