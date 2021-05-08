@@ -22,6 +22,8 @@ seal_height = 35;
 latch_num = 2; // [1, 2]
 // Style of seal surface
 seal_type = "flat"; // [channel_square:Square Channel,flat:Flat]
+// Show or hide the preview printbed
+show_printbed = "on"; // [on:On,off:Off]
 
 /* [Advanced] */
 
@@ -47,6 +49,17 @@ latch_height = 25.4;
 // Inner latch width, matches existing designs.
 latch_width = 12.7;
 
+/* [Print Bed] */
+
+//for display only, doesn't contribute to final object
+build_plate_selector = 3; //[0:Replicator 2,1: Replicator,2:Thingomatic,3:Manual]
+
+//when Build Plate Selector is set to "manual" this controls the build plate x dimension
+build_plate_manual_x = 200; //[100:400]
+
+//when Build Plate Selector is set to "manual" this controls the build plate y dimension
+build_plate_manual_y = 180; //[100:400]
+
 // Validate variables
 assert(box_height > 0);
 assert(box_width > 0);
@@ -59,16 +72,9 @@ ext_d = box_depth + (wall*2);
 ext_h = box_height + (wall*2);
 
 // Render Thingiverse Customizer build plate
-//for display only, doesn't contribute to final object
-build_plate_selector = 3; //[0:Replicator 2,1: Replicator,2:Thingomatic,3:Manual]
-
-//when Build Plate Selector is set to "manual" this controls the build plate x dimension
-build_plate_manual_x = 200; //[100:400]
-
-//when Build Plate Selector is set to "manual" this controls the build plate y dimension
-build_plate_manual_y = 180; //[100:400]
-
-build_plate(build_plate_selector,build_plate_manual_x,build_plate_manual_y);
+if (show_printbed == "on") {
+	build_plate(build_plate_selector,build_plate_manual_x,build_plate_manual_y);
+}
 
 // Creates rounded cube for rough shape of case.
 module box_core() {
