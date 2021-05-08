@@ -20,6 +20,8 @@ box_depth = 40;
 seal_height = 35;
 // Number of latches
 latch_num = 2; // [1, 2]
+// Style of seal surface
+seal_type = "flat"; // [channel_square:Square Channel,flat:Flat]
 
 /* [Advanced] */
 
@@ -234,23 +236,49 @@ module box_top_oring() {
 module box_top_printable() {
 		rotate([180, 0, 0]) {
 			translate([0, 0, -ext_h])
-				box_top_oring();
+				children();
 		}
 }
 
 module box_arrangement() {
-	translate([-((box_width/2)+10), 0, 0])
-		box_bottom_oring();
-	translate([(box_width/2)+10, 0, 0])
-		box_top_printable();
+	translate([-((box_width/2)+10), 0, 0]) {
+		if (seal_type == "flat") {
+			box_bottom();
+		}
+		if (seal_type == "channel_square") {
+			box_bottom_oring();
+		}
+	}
+	translate([(box_width/2)+10, 0, 0]) {
+		box_top_printable() {
+			if (seal_type == "flat") {
+				box_top();
+			}
+			if (seal_type == "channel_square") {
+				box_top_oring();
+			}
+		}
+	}
 }
 
 module box_customizer() {
 	if (part == "top") {
-		box_top_printable();
+		box_top_printable() {
+			if (seal_type == "flat") {
+				box_top();
+			}
+			if (seal_type == "channel_square") {
+				box_top_oring();
+			}
+		}
 	}
 	if (part == "bottom") {
-		box_bottom_oring();
+		if (seal_type == "flat") {
+			box_bottom();
+		}
+		if (seal_type == "channel_square") {
+			box_bottom_oring();
+		}
 	}
 	if (part == "both") {
 		box_arrangement();
