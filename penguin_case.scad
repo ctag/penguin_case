@@ -74,6 +74,28 @@ if (show_printbed == "on") {
 	build_plate(build_plate_selector,build_plate_manual_x,build_plate_manual_y);
 }
 
+// Create a cube with rounded vertical edges
+module cube_rvert(size=[0, 0, 0], mod_r=0, mod_center=true) {
+	h_adj = 0.2;
+	size_adj = [size.x - mod_r*2, size.y - mod_r*2, size.z - h_adj];
+
+	assert(size.x > mod_r*2, "Diameter larger than X dimension.");
+	assert(size.y > mod_r*2, "Diameter larger than Y dimension.");
+	assert(size.z > h_adj, "Z dimension too small.");
+
+	translate([0, 0, mod_center ? (size.z*-0.5) : 0]) {
+		linear_extrude(size.z)
+			offset(r=mod_r)
+				square([size_adj.x, size_adj.y], center=mod_center);
+	}
+
+// This works! But there's two methods for this cube_rvert and the offset above is like 5% faster.
+//	minkowski() {
+//		cube([size_adj.x, size_adj.y, size_adj.z], center=mod_center);
+//		cylinder(h_adj, r=mod_r, center=mod_center);
+//	}
+}
+
 // Creates rounded cube for rough shape of case.
 module box_core() {
 	difference() {
@@ -91,19 +113,12 @@ module box_core() {
 }
 
 module box_seal() {
-	c_h = 2; // cylinder height - minkowski helper variable
 	union() {
 		box_core();
 		translate([0, 0, seal_height]) {
 			hull() {
-				minkowski() {
-					cube([ext_w-(inner_radius*2), ext_d-(inner_radius*2), seal_thickness - c_h], center=true);
-					cylinder(c_h, r=(inner_radius + wall), center=true);
-				}
-				minkowski() {
-					cube([ext_w-(inner_radius*2), ext_d-(inner_radius*2), (seal_thickness + (wall * 2) - c_h)], center=true);
-					cylinder(c_h, r=(inner_radius), center=true);
-				}
+				cube_rvert([ext_w + (wall*2), ext_d + (wall*2), seal_thickness], inner_radius+wall);
+				cube_rvert([ext_w, ext_d, seal_thickness + (wall*2)], inner_radius);
 			}
 		}
 	}
@@ -204,16 +219,18 @@ module box_bottom_oring() {
 		box_bottom();
 		translate([0, 0, seal_height + (seal_thickness/4)])
 		difference() {
-			minkowski() {
-				cylinder_h = 2;
-				cube([box_width-(inner_radius*2), box_depth-(inner_radius*2), seal_thickness - cylinder_h], center=true);
-				cylinder(cylinder_h, r=(inner_radius + (wall*2) - 1), center=true);
-			}
-			minkowski() {
-				cylinder_h = 2;
-				cube([box_width-(inner_radius*2), box_depth-(inner_radius*2), seal_thickness - cylinder_h], center=true);
-				cylinder(cylinder_h, r=(inner_radius+1), center=true);
-			}
+//			minkowski() {
+//				cylinder_h = 2;
+//				cube([box_width-(inner_radius*2), box_depth-(inner_radius*2), seal_thickness - cylinder_h], center=true);
+//				cylinder(cylinder_h, r=(inner_radius + (wall*2) - 1), center=true);
+//			}
+			cube_rvert([box_width + ((wall*2)-1)*2, box_depth + ((wall*2)-1)*2, seal_thickness], inner_radius+(wall*2)-1);
+//			!minkowski() {
+//				cylinder_h = 2;
+//				cube([box_width-(inner_radius*2), box_depth-(inner_radius*2), seal_thickness - cylinder_h], center=true);
+//				cylinder(cylinder_h, r=(inner_radius+1), center=true);
+//			}
+			cube_rvert([box_width + 2, box_depth + 2, seal_thickness+0.2], inner_radius+1);
 		}
 	}
 }
