@@ -22,7 +22,9 @@ A 3D printed, parametric, ~waterproof~ latching box
   * 20mm long M3 Bolts. 2x per hinge or clasp. I use [these from BoltDepot](https://www.boltdepot.com/Product-Details.aspx?product=6383)
 * Print hinges and clasps from the [Frog Box](https://www.thingiverse.com/thing:4094861)
 * Customize your box in [OpenSCAD](https://openscad.org/)
+* Or use my [online customizer](https://berocs.com/penguin_case/)
 * Or use [Thingiverse's Customizer](https://www.thingiverse.com/thing:4852352)
+  * In my experience Thingiverse Customizer does not work, or at least takes more than a week to render. Use it instead as a preview generator and select values to then use in my [no-preview customizer](https://berocs.com/penguin_case/) above.
 * Print it!
 
 ## Prototype
