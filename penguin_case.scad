@@ -6,14 +6,14 @@ use <utils/build_plate.scad>
 
 /* [Basic] */
 
-part = "both"; // [top:Top Half, bottom: Bottom Half, both: Top and Bottom arranged]
+part = "both"; // [top:Top Half,bottom:Bottom Half,both:Top and Bottom arranged]
 
 // Box's internal height (z)
-box_height = 50; // [200]
+box_height = 50; // [50:200]
 // Box's internal width (x)
-box_width = 100; // [200]
+box_width = 100; // [24:200]
 // Box's internal depth (y)
-box_depth = 60; // [200]
+box_depth = 60; // [24:200]
 // Height (z) of seam between bottom and top halves
 seal_height = 35; // [200]
 // Number of latches
