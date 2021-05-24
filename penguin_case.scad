@@ -80,12 +80,6 @@ if (show_printbed == "on") {
 
 // Create a cube with rounded vertical edges
 module cube_rvert(size=[0, 0, 0], cyl_r=0, mod_center=true) {
-	h_adj = 0.2;
-
-	assert(size.x > cyl_r*2, "Diameter larger than X dimension.");
-	assert(size.y > cyl_r*2, "Diameter larger than Y dimension.");
-	assert(size.z > h_adj, "Z dimension too small.");
-
 	translate([0, 0, mod_center ? (size.z*-0.5) : 0]) {
 		linear_extrude(size.z)
 			offset(r=cyl_r)
